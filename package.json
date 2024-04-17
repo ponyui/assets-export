@@ -13,6 +13,7 @@
     "url": "https://github.com/ponyui/assets-export/issues"
   },
   "scripts": {
+    "prepare": "husky",
     "demo:init": "npm run init -w demo",
     "demo:import": "npm run import -w demo"
   },
@@ -20,5 +21,15 @@
     "figma-plugin",
     "cli",
     "demo"
-  ]
+  ],
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2"
+  },
+  "lint-staged": {
+    "{cli,figma-plugin}/src/**/*.{js,jsx,ts,tsx,css,json}": [
+      "npm run format",
+      "npm run lint"
+    ]
+  }
 }
