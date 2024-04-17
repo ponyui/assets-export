@@ -14,6 +14,8 @@
   },
   "scripts": {
     "prepare": "husky",
+    "lint": "npm run lint -w cli && npm run lint -w figma-plugin",
+    "format": "npm run format -w cli && npm run format -w figma-plugin",
     "demo:init": "npm run init -w demo",
     "demo:import": "npm run import -w demo"
   },
@@ -27,7 +29,7 @@
     "lint-staged": "^15.2.2"
   },
   "lint-staged": {
-    "{cli,figma-plugin}/src/**/*.{js,jsx,ts,tsx,css,json}": [
+    "*/src/**/*.{js,jsx,ts,tsx,css,json}": [
       "npm run format",
       "npm run lint"
     ]
