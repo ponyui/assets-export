@@ -1,0 +1,21 @@
+{
+  "name": "PonyUI Assets Export",
+  "id": "1362188146863121784",
+  "api": "1.0.0",
+  "main": "./code.js",
+  "ui": "./ui.html",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "documentAccess": "dynamic-page",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": [
+      "https://ponyui.com",
+      "https://assets.ponyui.com",
+      "https://fonts.googleapis.com",
+      "https://fonts.gstatic.com"
+    ],
+    "devAllowedDomains": ["https://k.ponyui.com"]
+  },
+  "enablePrivatePluginApi": true
+}

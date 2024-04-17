@@ -1,0 +1,37 @@
+{
+  "name": "@ponyui/assets-export-cli",
+  "version": "1.0.0",
+  "description": "PonyUI Assets Export CLI",
+  "author": "Kirill Grebeniukov",
+  "license": "MIT",
+  "main": "./build/index.js",
+  "files": [
+    "build/"
+  ],
+  "bin": {
+    "ponyui-assets": "./build/index.js",
+    "ponyui-a": "./build/index.js"
+  },
+  "scripts": {
+    "start": "npx ts-node src/index.ts",
+    "build": "npx tsc",
+    "dev": "npx nodemon --watch src -e ts --exec tsc",
+    "lint": "eslint --ext .js,.ts .",
+    "lint:fix": "eslint --fix --ext .js,.ts .",
+    "format": "prettier --check ./src",
+    "format:fix": "prettier --write ./src"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.56.0",
+    "@types/node": "^20.6.2",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

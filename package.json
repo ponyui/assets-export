@@ -1,0 +1,24 @@
+{
+  "name": "@ponyui/assets-export-workspace",
+  "description": "Monorepo for Figma Plugin & CLI package of PonyUI Assets Tool",
+  "author": "Kirill Grebeniukov",
+  "license": "MIT",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ponyui/assets-export.git"
+  },
+  "homepage": "https://github.com/ponyui/assets-export#readme",
+  "bugs": {
+    "url": "https://github.com/ponyui/assets-export/issues"
+  },
+  "scripts": {
+    "demo:init": "npm run init -w demo",
+    "demo:import": "npm run import -w demo"
+  },
+  "workspaces": [
+    "figma-plugin",
+    "cli",
+    "demo"
+  ]
+}

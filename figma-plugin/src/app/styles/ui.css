@@ -1,0 +1,78 @@
+* {
+  font-family: Ubuntu, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #000;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 60px */
+  margin: 0;
+}
+
+input {
+  font-family: Ubuntu, sans-serif;
+  font-size: 16px !important;
+}
+
+button {
+  font-family: Ubuntu, sans-serif;
+  font-size: 16px !important;
+  height: 38px;
+}
+
+a {
+  color: #0a58ca;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0a58ca;
+  text-decoration: underline;
+}
+
+h2 {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 21px */
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.label {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 21px */
+  margin-top: 12px;
+}
+
+.h16 {
+  height: 16px;
+}
+
+.h24 {
+  height: 24px;
+}
+
+.h32 {
+  height: 32px;
+}
+
+.w12 {
+  width: 12px;
+}
