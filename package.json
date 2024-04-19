@@ -16,6 +16,7 @@
     "prepare": "husky",
     "lint": "npm run lint -w cli && npm run lint -w figma-plugin",
     "format": "npm run format -w cli && npm run format -w figma-plugin",
+    "plugin:dev": "npm run serve -w figma-plugin",
     "demo:init": "npm run init -w demo",
     "demo:import": "npm run import -w demo"
   },
