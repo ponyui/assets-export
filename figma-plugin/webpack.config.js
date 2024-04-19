@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = (env, argv) => ({
@@ -20,7 +21,46 @@ module.exports = (env, argv) => ({
       { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ },
 
       // Enables including CSS by doing "import './file.css'" in your TypeScript code
-      { test: /\.css$/, use: ['style-loader', { loader: 'css-loader' }] },
+      // css/scss modules
+      {
+        test: /\.(css|scss)$/,
+        use: [
+          {
+            loader:
+              argv.mode === 'production'
+                ? MiniCssExtractPlugin.loader
+                : 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]--[hash:base64:5]',
+              },
+              sourceMap: argv.mode !== 'production',
+            },
+          },
+          { loader: 'sass-loader' },
+          { loader: 'postcss-loader' },
+        ],
+        include: /\.module\.(css|scss)$/,
+      },
+      // global css
+      {
+        test: /\.(css|scss)$/,
+        use: [
+          {
+            loader:
+              argv.mode === 'production'
+                ? MiniCssExtractPlugin.loader
+                : 'style-loader',
+          },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
+          { loader: 'postcss-loader' },
+        ],
+        exclude: /\.module\.(css|scss)$/,
+      },
 
       // Allows you to use "<%= require('./file.svg') %>" in your HTML code to get a data URI
       { test: /\.(png|jpg|gif|webp|svg)$/, loader: 'url-loader' },
