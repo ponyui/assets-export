@@ -17,5 +17,6 @@
     ],
     "devAllowedDomains": ["https://k.ponyui.com"]
   },
-  "enablePrivatePluginApi": true
+  "enablePrivatePluginApi": true,
+  "permissions": ["currentuser"]
 }

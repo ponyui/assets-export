@@ -1,17 +1,24 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
-import './styles/ui.css';
-import styles from './app.module.scss';
+import AuthContainer from './features/auth/auth-container';
+import LoginPage from './features/login/login.page';
+import SignupPage from './features/signup/signup.page';
+import ConfirmPage from './features/confirm/confirm.page';
+import PrivateAreaPage from './features/private/private.page';
 
 function App() {
-  console.log('styles', styles);
   return (
-    <div>
-      <div className="label">Hello world (!)</div>
-      <div className={styles.redBox}>box #1</div>
-      <div className={styles.redBox}>box #2</div>
-    </div>
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<AuthContainer />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/confirm" element={<ConfirmPage />} />
+          <Route path="/private/:page" element={<PrivateAreaPage />} />
+        </Route>
+      </Routes>
+    </MemoryRouter>
   );
 }
 
