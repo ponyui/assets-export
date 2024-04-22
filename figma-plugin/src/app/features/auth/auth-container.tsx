@@ -20,6 +20,9 @@ const AuthContainer = () => {
 
   const relogin = useCallback(
     async (user?: User) => {
+      setLoading(false);
+      navigate('/private/home');
+      /*
       const figmaId = user ? user.id : figmaUser.id;
 
       setLoading(true);
@@ -47,6 +50,7 @@ const AuthContainer = () => {
 
         throw error;
       }
+      */
     },
     [figmaUser, navigate],
   );
