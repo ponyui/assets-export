@@ -7,12 +7,13 @@
   "scripts": {
     "start": "npm run serve",
     "build": "webpack --mode=production",
-    "serve": "TSC_COMPILE_ON_ERROR=true webpack --mode=development --watch",
+    "dev": "TSC_COMPILE_ON_ERROR=true webpack --mode=development --watch",
     "lint": "eslint --ext .tsx --ext .ts .",
     "lint:fix": "eslint --ext .tsx --ext .ts . --fix",
     "format": "prettier --check ./src",
     "format:fix": "prettier --write ./src",
-    "import": "ponyui pull"
+    "import": "ponyui pull",
+    "import:dev": "npx nodemon --watch src --watch $(realpath ../node_modules/@ponyui/mvp-cli) -x npx ponyui pull"
   },
   "dependencies": {
     "axios": "^1.6.2",
@@ -23,6 +24,7 @@
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
+    "react-bootstrap-icons": "^1.11.4",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.17.0"
@@ -50,6 +52,7 @@
     "eslint-plugin-security": "^1.7.1",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.9.0",
+    "nodemon": "^3.1.0",
     "postcss-loader": "^8.1.1",
     "prettier": "^3.0.3",
     "raw-loader": "^4.0.2",
