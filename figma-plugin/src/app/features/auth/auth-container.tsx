@@ -13,9 +13,14 @@ import type { AppState, PonyUser } from '../app-context/app-state.context';
 import { AppStateContext } from '../app-context/app-state.context';
 
 const AuthContainer = () => {
+  const [loading, setLoading] = useState(true);
+
   const [figmaUser, setFigmaUser] = useState<User>(null);
   const [ponyUser, setPonyUser] = useState<PonyUser>(null);
-  const [loading, setLoading] = useState(true);
+
+  const [bannerMessage, setBannerMessage] = useState<string>(null);
+  const [successPushMessage, setSuccessPushMessage] = useState<string>(null);
+
   const navigate = useNavigate();
 
   const relogin = useCallback(
@@ -25,11 +30,15 @@ const AuthContainer = () => {
       const figmaId = user ? user.id : figmaUser.id;
 
       try {
-        const { data } = await axios.post(`${baseUrl}/login`, {
+        const {
+          data: { user, bannerMessage, successPushMessage },
+        } = await axios.post(`${baseUrl}/login`, {
           figmaId,
         });
 
-        setPonyUser(data as PonyUser);
+        setPonyUser(user as PonyUser);
+        setBannerMessage(bannerMessage);
+        setSuccessPushMessage(successPushMessage);
 
         navigate('/private/home');
       } catch (error) {
@@ -67,8 +76,8 @@ const AuthContainer = () => {
   }, []);
 
   const appState = useMemo<AppState>(
-    () => ({ figmaUser, ponyUser, relogin }),
-    [figmaUser, ponyUser, relogin],
+    () => ({ figmaUser, ponyUser, relogin, bannerMessage, successPushMessage }),
+    [figmaUser, ponyUser, relogin, bannerMessage, successPushMessage],
   );
 
   if (loading) {

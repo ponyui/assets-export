@@ -13,12 +13,16 @@ export interface PonyUser {
 export interface AppState {
   figmaUser: User | null;
   ponyUser: PonyUser | null;
-  relogin: () => void | null;
+  bannerMessage: string | null;
+  successPushMessage: string | null;
+  relogin: (() => Promise<void>) | null;
 }
 
 export const initialAppState: AppState = {
   figmaUser: null,
   ponyUser: null,
+  bannerMessage: null,
+  successPushMessage: null,
   relogin: null,
 };
 

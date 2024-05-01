@@ -2,23 +2,30 @@ import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import * as Icon from 'react-bootstrap-icons';
+
 import styles from './nodes.module.scss';
 
 export type NodesProps = {
   className?: string;
+  error?: string;
+  banner?: string;
 };
 
-const Nodes: React.FC<NodesProps> = ({ className }) => {
+const Nodes: React.FC<NodesProps> = ({ className, error, banner }) => {
   return (
     <div className={`${styles.content} ${className}`}>
       <div className={styles.alertsContainer}>
-        <Alert variant="danger" dismissible className={styles.errorAlert}>
-          Sorry, something went wrong. Try it later.
-        </Alert>
-        <Alert variant="success" dismissible className={styles.infoAlert}>
-          Hi there, if you want to know more about PonyUI, just check out our
-          landing page!
-        </Alert>
+        {!!error && (
+          <Alert variant="danger" dismissible className={styles.errorAlert}>
+            {error}
+          </Alert>
+        )}
+        {!!banner && (
+          <Alert variant="success" dismissible className={styles.infoAlert}>
+            {banner}
+          </Alert>
+        )}
       </div>
       <div className={styles.statsBlock}>
         <div className={styles.statsHeader}>ICON/PIC/COMPONENT</div>
@@ -31,7 +38,7 @@ const Nodes: React.FC<NodesProps> = ({ className }) => {
                 className={styles.input}
               />
               <Button variant="dark" className={styles.button}>
-                undefined
+                <Icon.Trash3 />
               </Button>
             </div>
           </div>
@@ -55,7 +62,9 @@ const Nodes: React.FC<NodesProps> = ({ className }) => {
             <Form.Control className={styles.pathInput} />
           </div>
           <div className={styles.ratioGroup}>
-            <div className={styles.scaleRatio}>Scale ratio</div>
+            <div className={styles.scaleRatio}>
+              Scale ratio (integer &gt;= 1)
+            </div>
             <Form.Control
               placeholder="integer >= 1"
               className={styles.ratioInput}
