@@ -1,13 +1,40 @@
-import React from 'react';
+import React, { useContext, useState, useCallback } from 'react';
+import axios from 'axios';
+
+import { baseUrl } from '../../../utils/constants';
+import { AppState, AppStateContext } from '../app-context/app-state.context';
+
+import SignUp from './sign-up.component';
 
 type SignupPageProps = {};
 
 const SignupPage: React.FC<SignupPageProps> = () => {
-  return (
-    <div>
-      <div>Signup Page</div>
-    </div>
+  const { figmaUser, relogin } = useContext<AppState>(AppStateContext);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const onSignUp = useCallback(
+    async (email: string) => {
+      try {
+        setError(null);
+        setLoading(true);
+        await axios.put(`${baseUrl}/signup`, {
+          app: 'assets',
+          id: figmaUser.id,
+          name: figmaUser.name,
+          email,
+        });
+
+        await relogin();
+      } catch (error) {
+        setError(error.response.data.message);
+      }
+      setLoading(false);
+    },
+    [figmaUser, relogin],
   );
+
+  return <SignUp error={error} onSignUp={onSignUp} loading={loading} />;
 };
 
 export default SignupPage;

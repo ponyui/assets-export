@@ -20,37 +20,31 @@ const AuthContainer = () => {
 
   const relogin = useCallback(
     async (user?: User) => {
-      setLoading(false);
-      navigate('/private/home');
-      /*
+      // setLoading(false);
+      // navigate('/private/nodes');
       const figmaId = user ? user.id : figmaUser.id;
 
-      setLoading(true);
       try {
         const { data } = await axios.post(`${baseUrl}/login`, {
           figmaId,
         });
 
         setPonyUser(data as PonyUser);
-        setLoading(false);
 
         navigate('/private/home');
       } catch (error) {
-        setLoading(false);
-
         const {
           response: { status },
         } = error;
 
         if (status === 401) {
-          navigate('/login');
+          navigate('/signup');
         } else if (status === 403) {
           navigate('/confirm');
         }
 
         throw error;
       }
-      */
     },
     [figmaUser, navigate],
   );
@@ -59,10 +53,14 @@ const AuthContainer = () => {
     on(PluginToAppEvents.FIGMA_USER, async figmaUser => {
       setFigmaUser(figmaUser);
       try {
+        setLoading(true);
+
         await relogin(figmaUser);
       } catch (error) {
         console.log('initial.login.error: ', error);
       }
+
+      setLoading(false);
     });
     //
     emit(AppToPluginEvents.GET_FIGMA_USER);
