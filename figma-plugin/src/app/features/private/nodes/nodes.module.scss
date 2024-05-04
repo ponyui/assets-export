@@ -109,6 +109,21 @@
   letter-spacing: 0%;
 }
 
+.lastChangesLight {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
 .frame3 {
   box-sizing: border-box;
   display: flex;

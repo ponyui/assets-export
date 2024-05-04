@@ -9,7 +9,11 @@ import {
   PluginToAppEvents,
 } from '../../../utils/constants';
 
-import type { AppState, PonyUser } from '../app-context/app-state.context';
+import type {
+  AppState,
+  PonyUser,
+  AssetNode,
+} from '../app-context/app-state.context';
 import { AppStateContext } from '../app-context/app-state.context';
 
 const AuthContainer = () => {
@@ -20,6 +24,9 @@ const AuthContainer = () => {
 
   const [bannerMessage, setBannerMessage] = useState<string>(null);
   const [successPushMessage, setSuccessPushMessage] = useState<string>(null);
+
+  const [publishedNodes, setPublishedNodes] = useState<AssetNode[]>([]);
+  const [drafts, setDrafts] = useState<AssetNode[]>([]);
 
   const navigate = useNavigate();
 
@@ -40,7 +47,7 @@ const AuthContainer = () => {
         setBannerMessage(bannerMessage);
         setSuccessPushMessage(successPushMessage);
 
-        navigate('/private/home');
+        navigate('/private/nodes');
       } catch (error) {
         const {
           response: { status },
@@ -76,8 +83,26 @@ const AuthContainer = () => {
   }, []);
 
   const appState = useMemo<AppState>(
-    () => ({ figmaUser, ponyUser, relogin, bannerMessage, successPushMessage }),
-    [figmaUser, ponyUser, relogin, bannerMessage, successPushMessage],
+    () => ({
+      figmaUser,
+      ponyUser,
+      relogin,
+      bannerMessage,
+      successPushMessage,
+      publishedNodes,
+      setPublishedNodes,
+      drafts,
+      setDrafts,
+    }),
+    [
+      figmaUser,
+      ponyUser,
+      relogin,
+      bannerMessage,
+      successPushMessage,
+      publishedNodes,
+      drafts,
+    ],
   );
 
   if (loading) {

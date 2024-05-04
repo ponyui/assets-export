@@ -1,50 +1,84 @@
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
-import * as Icon from 'react-bootstrap-icons';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
+import NodeStatus, {
+  NodeStatusState,
+} from '../../../components/node-status/node-status.component';
+
+import { AssetNode } from '../../app-context/app-state.context';
+
 import styles from './publish.module.scss';
+
+export interface DraftWithState {
+  state: NodeStatusState;
+  node: AssetNode;
+}
 
 export type PublishProps = {
   className?: string;
+  error?: string;
+  banner?: string;
+  //
+  unsaved: number;
+  draftsWithState: DraftWithState[];
+  //
+  onSelect: (draft: AssetNode) => () => void;
+  onPublish: () => void;
 };
 
-const Publish: React.FC<PublishProps> = ({ className }) => {
+const Publish: React.FC<PublishProps> = ({
+  className,
+  error,
+  banner,
+  //
+  unsaved,
+  draftsWithState,
+  //
+  onSelect,
+  onPublish,
+}) => {
   return (
     <div className={`${styles.frame1} ${className}`}>
       <div className={styles.alertsContainer}>
-        <Alert variant="danger" dismissible className={styles.errorAlert}>
-          Sorry, something went wrong. Try it later.
-        </Alert>
-        <Alert variant="success" dismissible className={styles.infoAlert}>
-          Hi there, if you want to know more about PonyUI, just check out our
-          landing page!
-        </Alert>
+        {!!error && (
+          <Alert variant="danger" dismissible className={styles.errorAlert}>
+            {error}
+          </Alert>
+        )}
+        {!!banner && (
+          <Alert variant="success" dismissible className={styles.infoAlert}>
+            {banner}
+          </Alert>
+        )}
       </div>
-      <div className={styles.sheetsBlock}>
-        <div className={styles.sheetsHeader}>
-          <div className={styles.googeSheets}>GOOGE SHEETS</div>
-          <Icon.QuestionCircle />
+      <div className={styles.saveBlock}>
+        <div className={styles.saveBlockHeader}>
+          {unsaved} UNSAVED FROM {draftsWithState.length} MARKED NODES
         </div>
-        <div className={styles.urlGroup}>
-          <div className={styles.link}>Link</div>
-          <Form.Control placeholder="link" className={styles.input} />
-        </div>
+        <Button
+          variant="dark"
+          className={styles.publishButton}
+          onClick={onPublish}>
+          Save for Export
+        </Button>
       </div>
       <div className={styles.nodesBlock}>
-        <div className={styles.stats}>STATS</div>
-        <div className={styles.nodesContent}>
-          <div className={styles.lastPublish}>
-            <div className={styles.lastPublication}>Last publication</div>
-            <Form.Control
-              placeholder="29.11.2023"
-              className={styles.input22019867}
-            />
-          </div>
+        <div className={styles.nodesBlockHeader}>LIST OF MARKED NODES</div>
+        <div className={styles.nodesBlockList}>
+          {!!draftsWithState &&
+            draftsWithState.map(({ state, node }) => {
+              return (
+                <div key={node.nodeId} className={styles.frame10}>
+                  <NodeStatus className={styles.nodeStatus} state={state} />
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <a href="#" onClick={onSelect(node)}>
+                    {`${node.path || ''}${node.path ? '/' : ''}${node.name}`}
+                  </a>
+                </div>
+              );
+            })}
         </div>
-        <Button variant="dark" className={styles.publishButton}>
-          Publish
-        </Button>
       </div>
     </div>
   );

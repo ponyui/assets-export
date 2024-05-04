@@ -20,6 +20,7 @@
     "bluebird": "^3.7.2",
     "bootstrap": "^5.3.2",
     "date-fns": "^2.30.0",
+    "just-kebab-case": "^4.2.0",
     "just-pascal-case": "^3.2.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
