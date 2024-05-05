@@ -25,7 +25,7 @@ export interface AppState {
   figmaUser: User | null;
   ponyUser: PonyUser | null;
   bannerMessage: string | null;
-  successPushMessage: string | null;
+  successPushMessage: any | null;
   relogin: (() => Promise<void>) | null;
   //
   publishedNodes: AssetNode[] | null;

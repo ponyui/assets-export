@@ -48,7 +48,8 @@ const Publish: React.FC<PublishProps> = ({
         )}
         {!!banner && (
           <Alert variant="success" dismissible className={styles.infoAlert}>
-            {banner}
+            {/* eslint-disable-next-line react/no-danger */}
+            <div dangerouslySetInnerHTML={{ __html: banner }} />
           </Alert>
         )}
       </div>

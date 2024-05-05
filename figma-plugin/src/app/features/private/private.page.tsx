@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Tab from 'react-bootstrap/Tab';
 
@@ -18,14 +18,28 @@ const PrivateAreaPage: React.FC<PrivateAreaPageProps> = () => {
   const { setPublishedNodes, setDrafts } =
     useContext<AppState>(AppStateContext);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    on(PluginToAppEvents.PUBLISHED_NODES, (nodes: AssetNode[]) => {
-      setPublishedNodes(nodes || []);
-      setDrafts(nodes || []);
+    on(PluginToAppEvents.PUBLISHED_NODES, (nodes0: AssetNode[]) => {
+      setLoading(false);
+
+      const nodes = nodes0.map(({ updatedAt, publishedAt, ...rest }) => ({
+        ...rest,
+        updatedAt: new Date(updatedAt),
+        publishedAt: publishedAt && new Date(publishedAt),
+      }));
+
+      setPublishedNodes(nodes ? [...nodes] : []);
+      setDrafts(nodes ? [...nodes] : []);
     });
 
     emit(AppToPluginEvents.LOAD_PUBLISHED_NODES);
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Tab.Container defaultActiveKey="nodes">

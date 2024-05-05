@@ -7,12 +7,7 @@ on(AppToPluginEvents.LOAD_PUBLISHED_NODES, () => {
     'nodes',
   );
 
-  const values = toJson ? JSON.parse(toJson) : [];
-  const nodes = values.map(({ updatedAt, publishedAt, ...rest }) => ({
-    ...rest,
-    updatedAt: new Date(updatedAt),
-    publishedAt: new Date(publishedAt),
-  }));
+  const nodes = toJson ? JSON.parse(toJson) : [];
 
   emit(PluginToAppEvents.PUBLISHED_NODES, nodes);
 });

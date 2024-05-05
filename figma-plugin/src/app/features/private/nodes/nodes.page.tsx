@@ -55,7 +55,7 @@ const NodesPage: React.FC<NodesPageProps> = () => {
         drafts.findIndex(({ nodeId }) => nodeId === draft.nodeId),
         1,
       );
-      setDrafts(drafts);
+      setDrafts([...drafts]);
       setDraft(null);
     }
   }, [drafts, setDrafts, draft]);

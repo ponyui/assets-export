@@ -19,7 +19,7 @@ const NodeStatus: React.FC<NodeStatusProps> = ({
       {state === 'saved' && <Icon.FileCheck />}
       {state === 'new' && <Icon.FilePlus />}
       {state === 'deleted' && <Icon.FileMinus />}
-      {state === 'changed' && <Icon.FileImage />}
+      {state === 'changed' && <Icon.File />}
     </div>
   );
 };

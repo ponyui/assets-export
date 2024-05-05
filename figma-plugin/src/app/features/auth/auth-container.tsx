@@ -23,7 +23,7 @@ const AuthContainer = () => {
   const [ponyUser, setPonyUser] = useState<PonyUser>(null);
 
   const [bannerMessage, setBannerMessage] = useState<string>(null);
-  const [successPushMessage, setSuccessPushMessage] = useState<string>(null);
+  const [successPushMessage, setSuccessPushMessage] = useState(null);
 
   const [publishedNodes, setPublishedNodes] = useState<AssetNode[]>([]);
   const [drafts, setDrafts] = useState<AssetNode[]>([]);
@@ -101,7 +101,9 @@ const AuthContainer = () => {
       bannerMessage,
       successPushMessage,
       publishedNodes,
+      setPublishedNodes,
       drafts,
+      setDrafts,
     ],
   );
 
