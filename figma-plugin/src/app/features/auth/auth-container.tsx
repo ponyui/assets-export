@@ -51,11 +51,11 @@ const AuthContainer = () => {
 
         navigate('/private/nodes');
       } catch (error) {
-        const {
-          response: { status },
-        } = error;
+        const { code, response: { status } = { status: 0 } } = error;
 
-        if (status === 401) {
+        if (code === 'ERR_NETWORK') {
+          Sentry.captureException(error);
+        } else if (status === 401) {
           navigate('/signup');
         } else if (status === 403) {
           navigate('/confirm');

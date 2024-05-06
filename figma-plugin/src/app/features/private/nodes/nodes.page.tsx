@@ -51,15 +51,14 @@ const NodesPage: React.FC<NodesPageProps> = () => {
   }, []);
 
   const onDelete = useCallback(() => {
-    methodDoesNotExist();
-    // if (draft) {
-    //   drafts.splice(
-    //     drafts.findIndex(({ nodeId }) => nodeId === draft.nodeId),
-    //     1,
-    //   );
-    //   setDrafts([...drafts]);
-    //   setDraft(null);
-    // }
+    if (draft) {
+      drafts.splice(
+        drafts.findIndex(({ nodeId }) => nodeId === draft.nodeId),
+        1,
+      );
+      setDrafts([...drafts]);
+      setDraft(null);
+    }
   }, [drafts, setDrafts, draft]);
 
   const onChange = useCallback(

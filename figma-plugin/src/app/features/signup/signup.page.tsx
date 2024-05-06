@@ -1,6 +1,7 @@
 import React, { useContext, useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import * as mixpanel from 'mixpanel-figma';
+import * as Sentry from '@sentry/react';
 
 import { baseUrl } from '../../../utils/constants';
 import { AppState, AppStateContext } from '../app-context/app-state.context';
@@ -34,7 +35,12 @@ const SignupPage: React.FC<SignupPageProps> = () => {
 
         mixpanel.track('Sign Up');
       } catch (error) {
-        setError(error.response.data.message);
+        if (error.code === 'ERR_NETWORK') {
+          Sentry.captureException(error);
+          setError(error.message);
+        } else {
+          setError(error.response?.data?.message);
+        }
       }
       setLoading(false);
     },
