@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react';
 import isEqual from 'lodash/isEqual';
 import omit from 'lodash/omit';
+import * as mixpanel from 'mixpanel-figma';
 
 import { emit, on } from '../../../../utils/events';
 import {
@@ -50,14 +51,15 @@ const NodesPage: React.FC<NodesPageProps> = () => {
   }, []);
 
   const onDelete = useCallback(() => {
-    if (draft) {
-      drafts.splice(
-        drafts.findIndex(({ nodeId }) => nodeId === draft.nodeId),
-        1,
-      );
-      setDrafts([...drafts]);
-      setDraft(null);
-    }
+    methodDoesNotExist();
+    // if (draft) {
+    //   drafts.splice(
+    //     drafts.findIndex(({ nodeId }) => nodeId === draft.nodeId),
+    //     1,
+    //   );
+    //   setDrafts([...drafts]);
+    //   setDraft(null);
+    // }
   }, [drafts, setDrafts, draft]);
 
   const onChange = useCallback(
@@ -80,6 +82,8 @@ const NodesPage: React.FC<NodesPageProps> = () => {
           ...drafts.filter(({ nodeId }) => nodeId !== value.nodeId),
         ]);
         setDraft(value);
+
+        mixpanel.track('Config Node');
       }
     },
     [drafts, draft, node, setDrafts],

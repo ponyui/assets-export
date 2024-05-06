@@ -60,7 +60,8 @@ const Publish: React.FC<PublishProps> = ({
         <Button
           variant="dark"
           className={styles.publishButton}
-          onClick={onPublish}>
+          onClick={onPublish}
+          disabled={unsaved === 0}>
           Save for Export
         </Button>
       </div>

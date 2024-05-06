@@ -1,4 +1,5 @@
 import React, { useContext, useState, useCallback } from 'react';
+import * as mixpanel from 'mixpanel-figma';
 
 import { AppState, AppStateContext } from '../app-context/app-state.context';
 
@@ -16,6 +17,8 @@ const ConfirmPage: React.FC<ConfirmPageProps> = () => {
     setLoading(true);
     try {
       await relogin();
+
+      mixpanel.track('Confirm Email');
     } catch (error) {
       setError(error.response.data.message);
     }

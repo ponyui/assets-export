@@ -1,5 +1,6 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useContext, useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
+import * as mixpanel from 'mixpanel-figma';
 
 import { baseUrl } from '../../../utils/constants';
 import { AppState, AppStateContext } from '../app-context/app-state.context';
@@ -12,6 +13,10 @@ const SignupPage: React.FC<SignupPageProps> = () => {
   const { figmaUser, relogin } = useContext<AppState>(AppStateContext);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    mixpanel.track('Open Plugin');
+  }, []);
 
   const onSignUp = useCallback(
     async (email: string) => {
@@ -26,6 +31,8 @@ const SignupPage: React.FC<SignupPageProps> = () => {
         });
 
         await relogin();
+
+        mixpanel.track('Sign Up');
       } catch (error) {
         setError(error.response.data.message);
       }

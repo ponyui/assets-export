@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import isEqual from 'lodash/isEqual';
 import omit from 'lodash/omit';
+import * as mixpanel from 'mixpanel-figma';
 
 import { emit } from '../../../../utils/events';
 import { AppToPluginEvents } from '../../../../utils/constants';
@@ -26,7 +27,12 @@ const PublishPage: React.FC<ConfirmPageProps> = () => {
   const closeModal = useCallback(() => setModalVisible(false), []);
   const showModal = useCallback(() => setModalVisible(true), []);
   const openLink = useCallback(
-    (url: string) => () => window.open(url, '_blank'),
+    (url: string) => () => {
+      mixpanel.track('Success Modal CTA', {
+        url,
+      });
+      window.open(url, '_blank');
+    },
     [],
   );
 
@@ -45,6 +51,10 @@ const PublishPage: React.FC<ConfirmPageProps> = () => {
     }));
 
     emit(AppToPluginEvents.PUBLISH, values);
+
+    mixpanel.track('Publish', {
+      amount: values.length,
+    });
 
     showModal();
   }, [drafts, showModal]);
