@@ -1,4 +1,4 @@
-export const baseUrl = process.env.API_URL;
+export const baseUrl = process.env.API_URL || 'https://assets.ponyui.com';
 
 export enum AppToPluginEvents {
   GET_FIGMA_USER = 'GET_FIGMA_USER',
