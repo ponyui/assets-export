@@ -8,9 +8,10 @@
   "files": [
     "build/"
   ],
+  "type": "module",
   "bin": {
     "ponyui-assets": "./build/index.js",
-    "ponyui-a": "./build/index.js"
+    "pa": "./build/index.js"
   },
   "scripts": {
     "start": "npx ts-node src/index.ts",
@@ -23,7 +24,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^8.56.0",
-    "@types/node": "^20.6.2",
+    "@types/node": "^20.12.10",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -33,5 +34,19 @@
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "axios": "^1.6.8",
+    "bluebird": "^3.7.2",
+    "commander": "^12.0.0",
+    "cosmiconfig": "^9.0.0",
+    "eslint": "^8.57.0",
+    "inquirer": "^9.2.20",
+    "just-pascal-case": "^3.2.0",
+    "lodash": "^4.17.21",
+    "prettier": "^3.2.5"
   }
 }
