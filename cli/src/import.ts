@@ -5,8 +5,11 @@ import groupBy from 'lodash/groupBy.js';
 import pascalCase from 'just-pascal-case';
 import { Command } from 'commander';
 import { cosmiconfigSync } from 'cosmiconfig';
+import { v4 as uuidv4 } from 'uuid';
 import { transform } from '@svgr/core';
+
 import { ESLint } from 'eslint';
+import * as prettierModule from 'prettier';
 
 export interface AssetNode {
   nodeId: string;
@@ -39,15 +42,29 @@ export default () => {
       console.log('Loading config file...');
 
       const explorer = cosmiconfigSync('ponyui-assets');
-      const config = explorer.load('.ponyui/assets.json');
+      let config = null;
+      try {
+        const configRef = explorer.load('.ponyui/assets.json');
+        config = configRef?.config;
+      } catch (e) {
+        // do nothing
+      }
 
       if (!config) {
         console.error('Config file not found. Run `npx pa init` first.');
         process.exit(1);
       }
 
-      const figmaFile = config.config.figmaFile || process.env.FIGMA_FILE;
-      const figmaToken = config.config.figmaToken || process.env.FIGMA_TOKEN;
+      if (!config.token) {
+        config.token = uuidv4();
+        fs.writeFileSync(
+          '.ponyui/assets.json',
+          JSON.stringify(config, null, 2),
+        );
+      }
+
+      const figmaFile = config.figmaFile || process.env.FIGMA_FILE;
+      const figmaToken = config.figmaToken || process.env.FIGMA_TOKEN;
 
       if (!figmaFile || !figmaToken) {
         console.error(
@@ -202,16 +219,8 @@ export default () => {
       console.log('Generating files...');
       console.log(sep);
 
-      const {
-        config: {
-          language,
-          eslint,
-          prettier,
-          exportImage,
-          exportSvg,
-          exportSvgr,
-        },
-      } = config;
+      const { language, eslint, prettier, exportImage, exportSvg, exportSvgr } =
+        config;
 
       await Bluebird.mapSeries(files, async (asset: AssetNode) => {
         const { exportAs, name, path } = asset;
@@ -259,15 +268,23 @@ export default () => {
           try {
             if (prettier) {
               // https://stevenklambert.com/writing/getting-prettier-api-format-code-same-as-cli/
-              const prettierConfig = await prettier.resolveConfig(filePath);
+              const prettierConfig =
+                await prettierModule.resolveConfig(filePath);
               if (prettierConfig) {
-                code = await prettier.format(code, {
+                code = await prettierModule.format(code, {
                   ...prettierConfig,
                   filepath: filePath,
                 });
               }
             }
+          } catch (e) {
+            // prettier or eslint couldn't fix the code, so just skip this step
+            if (verbose) {
+              console.error(e);
+            }
+          }
 
+          try {
             if (eslint) {
               const eslint = new ESLint({
                 fix: true,
@@ -306,8 +323,6 @@ export default () => {
           `${ponyUI}/cta?app=assets-cli&name=importCTA`,
         );
 
-        console.log('CTA: ', data);
-
         importCTA = data;
       } catch (e) {
         if (verbose) {
@@ -320,7 +335,7 @@ export default () => {
       );
 
       if (importCTA) {
-        console.log([importCTA].join('\n'));
+        console.log([importCTA, sep].join('\n'));
       }
     });
 

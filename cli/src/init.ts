@@ -1,4 +1,6 @@
 import { Command } from 'commander';
+import { v4 as uuidv4 } from 'uuid';
+import { cosmiconfigSync } from 'cosmiconfig';
 import inquirer from 'inquirer';
 import fs from 'fs';
 import axios from 'axios';
@@ -37,12 +39,12 @@ export default () => {
       .prompt([
         {
           type: 'list',
-          name: 'figmaSecurity',
+          name: 'selectedFigmaSecurity',
           message: [
             'Thanks for using out tools. On the next step we will ask you to provide Figma File ID & Token. ',
             'We only save this information in your local machine. ',
             'If you don`t know how to get it, watch these youtube videos: ',
-            'https://ponyui.com/how-to-1, https://ponyui.com/how-to-2',
+            'https://www.youtube.com/watch?v=uUv-IZX4KYg & https://www.youtube.com/watch?v=uUv-IZX4KYg',
           ].join(''),
           choices: [figmaSecurity.FILE, figmaSecurity.ENV],
           default: figmaSecurity.FILE,
@@ -52,18 +54,18 @@ export default () => {
           name: 'figmaFile',
           message: 'Figma File ID:',
           when: (answers: any) =>
-            answers['figmaSecurity'] === 'Save them in config file',
+            answers['selectedFigmaSecurity'] === 'Save them in config file',
         },
         {
           type: 'input',
           name: 'figmaToken',
           message: 'Figma Token:',
           when: (answers: any) =>
-            answers['figmaSecurity'] === 'Save them in config file',
+            answers['selectedFigmaSecurity'] === 'Save them in config file',
         },
         {
           type: 'checkbox',
-          name: 'assetsTypeList',
+          name: 'selectedAssetTypes',
           message: 'What types of assets you are going to import?',
           choices: [assetsTypes.IMAGES, assetsTypes.SVG, assetsTypes.SVGR],
         },
@@ -73,7 +75,7 @@ export default () => {
           message: 'Please specify path to save png & jpg images:',
           default: defaultImageConfig.path,
           when: (answers: any) =>
-            answers['assetsTypeList'].includes(assetsTypes.IMAGES),
+            answers['selectedAssetTypes'].includes(assetsTypes.IMAGES),
         },
         {
           type: 'input',
@@ -81,7 +83,7 @@ export default () => {
           message: 'Please specify path to save svg files:',
           default: defaultSvgConfig.path,
           when: (answers: any) =>
-            answers['assetsTypeList'].includes(assetsTypes.SVG),
+            answers['selectedAssetTypes'].includes(assetsTypes.SVG),
         },
         {
           type: 'input',
@@ -89,7 +91,7 @@ export default () => {
           message: 'Please specify path to save svg react icon components:',
           default: defaultSvgrConfig.path,
           when: (answers: any) =>
-            answers['assetsTypeList'].includes(assetsTypes.SVGR),
+            answers['selectedAssetTypes'].includes(assetsTypes.SVGR),
         },
         {
           type: 'list',
@@ -98,7 +100,7 @@ export default () => {
           choices: ['javascript', 'typescript'],
           default: 'typescript',
           when: (answers: any) =>
-            answers['assetsTypeList'].includes(assetsTypes.SVGR),
+            answers['selectedAssetTypes'].includes(assetsTypes.SVGR),
         },
         {
           type: 'input',
@@ -107,7 +109,7 @@ export default () => {
             'If you want to have middle name for react icons (like trash.icon.tsx), type it:',
           default: defaultSvgrConfig.middleName,
           when: (answers: any) =>
-            answers['assetsTypeList'].includes(assetsTypes.SVGR),
+            answers['selectedAssetTypes'].includes(assetsTypes.SVGR),
         },
         {
           type: 'list',
@@ -115,7 +117,7 @@ export default () => {
           message: 'Do you use eslint?',
           choices: ['Yes', 'No'],
           when: (answers: any) =>
-            answers['assetsTypeList'].includes(assetsTypes.SVGR),
+            answers['selectedAssetTypes'].includes(assetsTypes.SVGR),
         },
         {
           type: 'list',
@@ -123,7 +125,7 @@ export default () => {
           message: 'Do you use prettier?',
           choices: ['Yes', 'No'],
           when: (answers: any) =>
-            answers['assetsTypeList'].includes(assetsTypes.SVGR),
+            answers['selectedAssetTypes'].includes(assetsTypes.SVGR),
         },
         {
           type: 'input',
@@ -156,10 +158,10 @@ export default () => {
       ])
       .then(
         async ({
-          figmaSecurity,
+          selectedFigmaSecurity,
           figmaFile,
           figmaToken,
-          assetsTypeList,
+          selectedAssetTypes,
           imagesPath,
           svgPath,
           svgrPath,
@@ -191,10 +193,32 @@ export default () => {
             }
           }
 
-          const hasSvgr = assetsTypeList.indexOf(assetsTypes.SVGR) >= 0;
+          const explorer = cosmiconfigSync('ponyui-assets');
+          let oldConfig = null;
+          try {
+            const configRef = explorer.load('.ponyui/assets.json');
+            oldConfig = configRef?.config;
+          } catch (e) {
+            // do nothing
+          }
+
+          const hasSvgr = selectedAssetTypes.indexOf(assetsTypes.SVGR) >= 0;
+
+          console.log(
+            'figmaSecurity: ',
+            selectedFigmaSecurity,
+            '|',
+            selectedFigmaSecurity === figmaSecurity.FILE,
+            selectedFigmaSecurity.indexOf(figmaSecurity.FILE) >= 0,
+            figmaFile,
+            figmaToken,
+          );
 
           const config: Config = {
-            ...(figmaSecurity === figmaSecurity.FILE
+            token: oldConfig?.token || uuidv4(),
+            ...(selectedFigmaSecurity === figmaSecurity.FILE &&
+            figmaFile &&
+            figmaToken
               ? {
                   figmaFile,
                   figmaToken,
@@ -203,19 +227,19 @@ export default () => {
             language: language || 'typescript',
             eslint: hasSvgr && eslint === 'Yes',
             prettier: hasSvgr && prettier === 'Yes',
-            exportImage: assetsTypeList.includes(assetsTypes.IMAGES)
+            exportImage: selectedAssetTypes.includes(assetsTypes.IMAGES)
               ? {
                   ...defaultImageConfig,
                   path: imagesPath,
                 }
               : defaultImageConfig,
-            exportSvg: assetsTypeList.includes(assetsTypes.SVG)
+            exportSvg: selectedAssetTypes.includes(assetsTypes.SVG)
               ? {
                   ...defaultSvgConfig,
                   path: svgPath,
                 }
               : defaultSvgConfig,
-            exportSvgr: assetsTypeList.includes(assetsTypes.SVGR)
+            exportSvgr: selectedAssetTypes.includes(assetsTypes.SVGR)
               ? {
                   ...defaultSvgrConfig,
                   path: svgrPath,
@@ -223,6 +247,8 @@ export default () => {
                 }
               : defaultSvgrConfig,
           };
+
+          console.log('writeConfig: ', config);
 
           // let's create `.ponyui` folder
           fs.mkdirSync('.ponyui', { recursive: true });

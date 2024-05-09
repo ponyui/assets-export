@@ -4,6 +4,7 @@ export interface ExportTypeConfig {
 }
 
 export interface Config {
+  token?: string;
   figmaFile?: string;
   figmaToken?: string;
   language: string;

@@ -47,6 +47,7 @@
     "inquirer": "^9.2.20",
     "just-pascal-case": "^3.2.0",
     "lodash": "^4.17.21",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "uuid": "^9.0.1"
   }
 }
