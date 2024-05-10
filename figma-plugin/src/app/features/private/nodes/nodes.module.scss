@@ -1,0 +1,327 @@
+.content {
+  box-sizing: border-box;
+  padding-top: 32px;
+  padding-left: 14px;
+  padding-bottom: 32px;
+  padding-right: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+}
+
+.alertsContainer {
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.errorAlert {
+  position: relative;
+  align-self: stretch;
+  width: unset;
+  height: unset;
+}
+
+.infoAlert {
+  position: relative;
+  align-self: stretch;
+  width: unset;
+  height: unset;
+}
+
+.statsBlock {
+  box-sizing: border-box;
+  padding-left: 12px;
+  padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.statsHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.statsContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.lastChanged {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.lastChanges {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.lastChangesLight {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.frame3 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.input {
+  flex-grow: 1;
+  width: unset;
+  height: unset;
+}
+
+.button {
+  width: 35px;
+  height: 35px;
+}
+
+.exportSettingsBlock {
+  box-sizing: border-box;
+  padding-left: 12px;
+  padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.exportSettingsHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.exportSettingsContent {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.exportAsGroup {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.exportAs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.select {
+  position: relative;
+  align-self: stretch;
+  width: unset;
+  height: unset;
+}
+
+.nameGroup {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.name {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.nameInput {
+  align-self: stretch;
+  width: unset;
+  height: unset;
+}
+
+.pathGroup {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.customPath {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.pathInput {
+  align-self: stretch;
+  width: unset;
+  height: unset;
+}
+
+.ratioGroup {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.scaleRatio {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.ratioInput {
+  align-self: stretch;
+  width: unset;
+  height: unset;
+}

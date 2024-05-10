@@ -3,12 +3,22 @@
   "version": "1.0.0",
   "description": "PonyUI Assets Export Demo Space",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "init": "npx ponyui-a init",
-    "import": "npx ponyui-a import",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf src",
+    "init": "npx pa init",
+    "import": "npx pa import",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+    "format": "prettier --check ./src",
+    "format:fix": "prettier --write ./src"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@ponyui/assets-export-cli": "file:../cli"
+  }
 }

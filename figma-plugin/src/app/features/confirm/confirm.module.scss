@@ -1,0 +1,127 @@
+.confirm {
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  width: unset;
+  height: unset;
+  position: absolute !important;
+  left: calc(50% - 150px);
+  top: calc(50% - 251.5px - 25.5px);
+}
+
+.assetsAppName {
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+}
+
+.assetsCover {
+  background: #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 256px;
+  height: 256px;
+  position: relative;
+}
+
+.form {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  width: unset;
+  height: unset;
+}
+
+.description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0%;
+}
+
+.button {
+  width: 261px;
+  height: unset;
+}
+
+.learnMoreBlock {
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+  width: unset;
+  height: unset;
+}
+
+.learnMoreAbout {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.ponyUiLink {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: unset;
+  height: unset;
+  color: rgb(10, 88, 202);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+  text-decoration: underline;
+}
+
+.alert {
+  position: absolute !important;
+  left: 14px;
+  right: 14px;
+  top: 16px;
+  width: unset;
+  height: unset;
+}

@@ -1,0 +1,15 @@
+<%#imports%>
+<% toString %>
+<%/imports%>
+
+<% types %>
+
+export type <% componentName %>Props = {
+<% propTypes %>
+};
+
+const <% componentName %>:<%^localConfig.engine.importReact%>React.<%/localConfig.engine.importReact%>FC<<% componentName %>Props> = (<%#props%>{ <%props%> }<%/props%>) => {
+  return <% jsx %>;
+};
+
+export <%#config.engine.exportComponentAsDefault%>default <%/config.engine.exportComponentAsDefault%><% componentName %>;

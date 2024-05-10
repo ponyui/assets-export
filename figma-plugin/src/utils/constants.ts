@@ -1,9 +1,16 @@
-export const baseUrl = 'https://k.ponyui.com';
+export const baseUrl = process.env.API_URL || 'https://assets.ponyui.com';
 
 export enum AppToPluginEvents {
   GET_FIGMA_USER = 'GET_FIGMA_USER',
+  LOAD_PUBLISHED_NODES = 'LOAD_PUBLISHED_NODES',
+  PUBLISH = 'PUBLISH',
+  SUBSCRIBE_ON_SELECTION_CHANGE = 'SUBSCRIBE_ON_SELECTION_CHANGE',
+  UNSUBSCRIBE_ON_SELECTION_CHANGE = 'UNSUBSCRIBE_ON_SELECTION_CHANGE',
+  SELECT_NODE = 'SELECT_NODE',
 }
 
 export enum PluginToAppEvents {
   FIGMA_USER = 'FIGMA_USER',
+  PUBLISHED_NODES = 'PUBLISHED_NODES',
+  SELECTION_CHANGED = 'SELECTION_CHANGED',
 }

@@ -6,14 +6,15 @@
   "ui": "./ui.html",
   "capabilities": [],
   "enableProposedApi": false,
-  "documentAccess": "dynamic-page",
   "editorType": ["figma"],
   "networkAccess": {
     "allowedDomains": [
       "https://ponyui.com",
       "https://assets.ponyui.com",
       "https://fonts.googleapis.com",
-      "https://fonts.gstatic.com"
+      "https://fonts.gstatic.com",
+      "https://api-js.mixpanel.com",
+      "https://o4507078014009344.ingest.us.sentry.io"
     ],
     "devAllowedDomains": ["https://k.ponyui.com"]
   },

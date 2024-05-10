@@ -2,6 +2,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
+const { sentryWebpackPlugin } = require('@sentry/webpack-plugin');
 const path = require('path');
 
 module.exports = (env, argv) => ({
@@ -89,6 +91,12 @@ module.exports = (env, argv) => ({
     new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/ui/]),
     new CopyPlugin({
       patterns: ['manifest.json'],
+    }),
+    new Dotenv(),
+    sentryWebpackPlugin({
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: 'ponyui',
+      project: 'assets-figma-plugin',
     }),
   ],
 });

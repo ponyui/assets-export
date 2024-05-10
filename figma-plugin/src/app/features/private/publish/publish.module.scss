@@ -1,0 +1,168 @@
+.frame1 {
+  box-sizing: border-box;
+  padding-top: 32px;
+  padding-left: 14px;
+  padding-bottom: 32px;
+  padding-right: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+}
+
+.alertsContainer {
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.errorAlert {
+  position: relative;
+  align-self: stretch;
+  width: unset;
+  height: unset;
+}
+
+.infoAlert {
+  position: relative;
+  align-self: stretch;
+  width: unset;
+  height: unset;
+}
+
+.saveBlock {
+  box-sizing: border-box;
+  padding-top: 6px;
+  padding-left: 12px;
+  padding-bottom: 6px;
+  padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.saveBlockHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.publishButton {
+  align-self: stretch;
+  width: unset;
+  height: unset;
+}
+
+.nodesBlock {
+  box-sizing: border-box;
+  padding-top: 6px;
+  padding-left: 12px;
+  padding-bottom: 6px;
+  padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.nodesBlockHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
+
+.nodesBlockList {
+  box-sizing: border-box;
+  overflow: hidden;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.frame10 {
+  background: #fff;
+  border-color: rgb(196, 196, 196);
+  border-style: solid;
+  border-width: 0 0 1px;
+  overflow: hidden;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  width: unset;
+  align-self: stretch;
+  height: unset;
+}
+
+.nodeStatus {
+  background: #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.nodeName {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: unset;
+  height: unset;
+  color: rgb(0, 0, 0);
+  font-family: Ubuntu;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 150%;
+  text-align: left;
+  letter-spacing: 0%;
+}
