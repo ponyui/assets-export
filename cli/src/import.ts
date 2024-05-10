@@ -10,6 +10,7 @@ import { transform } from '@svgr/core';
 
 import { ESLint } from 'eslint';
 import * as prettierModule from 'prettier';
+import { Mixpanel } from 'mixpanel';
 
 export interface AssetNode {
   nodeId: string;
@@ -28,7 +29,7 @@ const maxRetries = 5;
 const maxDelay = 2000;
 const sep = '----------------------------------------';
 
-export default () => {
+export default (mixpanel: Mixpanel) => {
   const command = new Command('import');
 
   command
@@ -219,8 +220,22 @@ export default () => {
       console.log('Generating files...');
       console.log(sep);
 
-      const { language, eslint, prettier, exportImage, exportSvg, exportSvgr } =
-        config;
+      const {
+        token,
+        language,
+        eslint,
+        prettier,
+        exportImage,
+        exportSvg,
+        exportSvgr,
+      } = config;
+
+      const stats = {
+        total: 0,
+        images: 0,
+        svg: 0,
+        svgr: 0,
+      };
 
       await Bluebird.mapSeries(files, async (asset: AssetNode) => {
         const { exportAs, name, path } = asset;
@@ -234,12 +249,18 @@ export default () => {
 
         if (isImage) {
           filePath = path || exportImage.path;
+          stats.total += 1;
+          stats.images += 1;
         } else if (exportAs === 'svg') {
           filePath = path || exportSvg.path;
+          stats.total += 1;
+          stats.svg += 1;
         } else if (isSvgr) {
           filePath = path || exportSvgr.path;
           middleName = exportSvgr.middleName;
           ext = language === 'typescript' ? 'tsx' : 'js';
+          stats.total += 1;
+          stats.svgr += 1;
         }
 
         filePath = filePath
@@ -315,6 +336,9 @@ export default () => {
 
         console.log(`${filePath}... Created.`);
       });
+
+      mixpanel.people.set(token, {});
+      mixpanel.track('import', stats);
 
       const ponyUI = process.env.API_URL || 'https://assets.ponyui.com';
       let importCTA = null;

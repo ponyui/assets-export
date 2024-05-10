@@ -4,6 +4,7 @@ import { cosmiconfigSync } from 'cosmiconfig';
 import inquirer from 'inquirer';
 import fs from 'fs';
 import axios from 'axios';
+import { Mixpanel } from 'mixpanel';
 
 import { type Config, ExportTypeConfig } from './config.js';
 
@@ -31,7 +32,7 @@ const defaultSvgrConfig: ExportTypeConfig = {
   middleName: 'icon',
 };
 
-export default () => {
+export default (mixpanel: Mixpanel) => {
   const command = new Command('init');
 
   command.description('init command will create a config file').action(() => {
@@ -172,6 +173,19 @@ export default () => {
           newsletter,
           username,
         }: any) => {
+          const explorer = cosmiconfigSync('ponyui-assets');
+          let oldConfig = null;
+          try {
+            const configRef = explorer.load('.ponyui/assets.json');
+            oldConfig = configRef?.config;
+          } catch (e) {
+            // do nothing
+          }
+
+          const token = oldConfig?.token || uuidv4();
+          mixpanel.people.set(token, {});
+          mixpanel.track('init');
+
           if (newsletter) {
             try {
               const baseUrl =
@@ -181,6 +195,7 @@ export default () => {
                 name: username,
                 email: newsletter,
               });
+              mixpanel.track('subscribe');
             } catch (e) {
               console.error(
                 [
@@ -193,29 +208,10 @@ export default () => {
             }
           }
 
-          const explorer = cosmiconfigSync('ponyui-assets');
-          let oldConfig = null;
-          try {
-            const configRef = explorer.load('.ponyui/assets.json');
-            oldConfig = configRef?.config;
-          } catch (e) {
-            // do nothing
-          }
-
           const hasSvgr = selectedAssetTypes.indexOf(assetsTypes.SVGR) >= 0;
 
-          console.log(
-            'figmaSecurity: ',
-            selectedFigmaSecurity,
-            '|',
-            selectedFigmaSecurity === figmaSecurity.FILE,
-            selectedFigmaSecurity.indexOf(figmaSecurity.FILE) >= 0,
-            figmaFile,
-            figmaToken,
-          );
-
           const config: Config = {
-            token: oldConfig?.token || uuidv4(),
+            token,
             ...(selectedFigmaSecurity === figmaSecurity.FILE &&
             figmaFile &&
             figmaToken
@@ -247,8 +243,6 @@ export default () => {
                 }
               : defaultSvgrConfig,
           };
-
-          console.log('writeConfig: ', config);
 
           // let's create `.ponyui` folder
           fs.mkdirSync('.ponyui', { recursive: true });
