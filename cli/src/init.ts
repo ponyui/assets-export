@@ -42,10 +42,13 @@ export default (mixpanel: Mixpanel) => {
           type: 'list',
           name: 'selectedFigmaSecurity',
           message: [
-            'Thanks for using out tools. On the next step we will ask you to provide Figma File ID & Token. ',
-            'We only save this information in your local machine. ',
-            'If you don`t know how to get it, watch these youtube videos: ',
-            'https://www.youtube.com/watch?v=uUv-IZX4KYg & https://www.youtube.com/watch?v=uUv-IZX4KYg',
+            // 'Thanks for using out tools. On the next step we will ask you to provide Figma File ID & Token. ',
+            // 'We only save this information in your local machine. ',
+            // 'If you don`t know how to get it, watch these youtube videos: ',
+            // 'https://www.youtube.com/watch?v=uUv-IZX4KYg & https://www.youtube.com/watch?v=uUv-IZX4KYg',
+            'Hey there! In order to get your assets from Figma we need Figma File ID & Figma Access Token. ',
+            'You can keep them private in FIGMA_FILE & FIGMA_TOKEN env variables or save them in config file. ',
+            'What do you prefer?',
           ].join(''),
           choices: [figmaSecurity.FILE, figmaSecurity.ENV],
           default: figmaSecurity.FILE,
@@ -73,7 +76,7 @@ export default (mixpanel: Mixpanel) => {
         {
           type: 'input',
           name: 'imagesPath',
-          message: 'Please specify path to save png & jpg images:',
+          message: 'Please specify path where to save png & jpg images:',
           default: defaultImageConfig.path,
           when: (answers: any) =>
             answers['selectedAssetTypes'].includes(assetsTypes.IMAGES),
@@ -81,7 +84,7 @@ export default (mixpanel: Mixpanel) => {
         {
           type: 'input',
           name: 'svgPath',
-          message: 'Please specify path to save svg files:',
+          message: 'Please specify path where to save svg files:',
           default: defaultSvgConfig.path,
           when: (answers: any) =>
             answers['selectedAssetTypes'].includes(assetsTypes.SVG),
@@ -89,7 +92,8 @@ export default (mixpanel: Mixpanel) => {
         {
           type: 'input',
           name: 'svgrPath',
-          message: 'Please specify path to save svg react icon components:',
+          message:
+            'Please specify path where to save svg react icon components:',
           default: defaultSvgrConfig.path,
           when: (answers: any) =>
             answers['selectedAssetTypes'].includes(assetsTypes.SVGR),
@@ -97,7 +101,7 @@ export default (mixpanel: Mixpanel) => {
         {
           type: 'list',
           name: 'language',
-          message: 'What language you are using?',
+          message: 'What language are you using?',
           choices: ['javascript', 'typescript'],
           default: 'typescript',
           when: (answers: any) =>
