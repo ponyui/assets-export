@@ -1,6 +1,6 @@
 {
   "name": "@ponyui/assets-export-workspace",
-  "description": "Monorepo for Figma Plugin & CLI package of PonyUI Assets Tool",
+  "description": "Monorepo for Figma Plugin & CLI package of PonyUI Assets Export",
   "author": "Kirill Grebeniukov",
   "license": "MIT",
   "keywords": [],

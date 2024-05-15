@@ -324,7 +324,6 @@ export default (mixpanel: Mixpanel) => {
             }
           }
 
-          // eslint-disable-next-line no-param-reassign
           asset.content = code;
         }
 
