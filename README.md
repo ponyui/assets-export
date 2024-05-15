@@ -56,6 +56,8 @@ npx pa init
 
 ![npx pa init](./assets/cli-init.jpg)
 
+If you don't know how to get Figma File Id or Figma Access Token, please watch these two videos: https://youtu.be/g-i_erruGGc & https://youtu.be/O0fc89JVXII
+
 ### Import assets to your local workspace
 
 ```
