@@ -47,6 +47,8 @@ export default (mixpanel: Mixpanel) => {
             // 'If you don`t know how to get it, watch these youtube videos: ',
             // 'https://www.youtube.com/watch?v=uUv-IZX4KYg & https://www.youtube.com/watch?v=uUv-IZX4KYg',
             'Hey there! In order to get your assets from Figma we need Figma File ID & Figma Access Token. ',
+            'If you don`t know how to get them, please watch these two videos: ',
+            'https://youtu.be/g-i_erruGGc & https://youtu.be/O0fc89JVXII',
             'You can keep them private in FIGMA_FILE & FIGMA_TOKEN env variables or save them in config file. ',
             'What do you prefer?',
           ].join(''),
@@ -138,8 +140,8 @@ export default (mixpanel: Mixpanel) => {
           message: [
             'At PonyUI we are hard working on the tool ',
             'that automates the conversion of Figma designs into React/React Native code. ',
-            'If you are interested, please type your email ',
-            'and join our newsletter and waitlist. Email: ',
+            'If you are interested, learn more at https://ponyui.com or type your email ',
+            'and join our newsletter. Email: ',
           ].join(''),
           validate: input => {
             if (!input) {
@@ -201,6 +203,7 @@ export default (mixpanel: Mixpanel) => {
               });
               mixpanel.track('subscribe');
             } catch (e) {
+              // console.log(e);
               console.error(
                 [
                   '----------------------------------------',
@@ -208,7 +211,6 @@ export default (mixpanel: Mixpanel) => {
                   'Please subscribe at https://ponyui.com',
                 ].join('\n'),
               );
-              console.log(e);
             }
           }
 

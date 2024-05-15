@@ -23,6 +23,7 @@ FAST and FREE!
 - **PonyUI Assets Export** will remember exported nodes, so you always know if a particular node is already exported in your source code and where to find it.
 - Inside the developer workspace you can configure different default folders for different types of assets.
 - And you can specify a custom folder for any special asset if you need it.
+- You can import all configured assets at once or a single asset by its id.
 
 ## Usage
 
