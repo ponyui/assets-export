@@ -71,11 +71,14 @@ This monorepo contains several parts of PonyUI Assets Export tool
 ## What's PonyUI
 
 [PonyUI](https://ponyui.com) is a toolchain aimed to automate the coding of your UI. It's going to be a small workhorse that converts Design to Code and
-vice versa to make Design File is the real "source of thruth" for project's UI. Now we focus on the tool to convert Figma to React & React Native.
+vice versa to make Design File is the real "source of thruth" for project's UI. Now we focus on the MVP tool to convert Figma to React & React Native.
+
+BTW: UI for Figma Plugin in this repo was exported with PonyUI MVP 😉
 
 We want to help software dev teams iterate faster and cheaper.
 
-If it resonates with you, let's be in touch in our newsletter at [ponyui.com](https://ponyui.com) and follow our social media:  
+If it resonates with you, let's be in touch in our newsletter at [ponyui.com](https://ponyui.com) and follow our social media:
+
 👉 [Twitter](https://twitter.com/pony_ui)  
-👉 [YouTube](www.youtube.com/@ponyuirocks)  
-👉 [LinkedIn](https://www.linkedin.com/in/kirill-grebeniukov/)
+👉 [YouTube](https://youtube.com/@ponyuirocks)  
+👉 [LinkedIn](https://linkedin.com/in/kirill-grebeniukov/)
