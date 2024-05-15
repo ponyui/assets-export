@@ -11,6 +11,8 @@ FAST and FREE!
 
 💻 Directly in your Local Workspace - our CLI tool will get all configured assets from your Figma file and save them in your source folder.
 
+![full preview](./assets/preview.gif)
+
 ## Functionality
 
 - You can export to png, jpg or svg files
