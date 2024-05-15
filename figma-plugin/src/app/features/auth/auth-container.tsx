@@ -104,6 +104,12 @@ const AuthContainer = () => {
         await relogin(figmaUser);
       } catch (error) {
         console.log('initial.login.error: ', error);
+
+        const { code } = error;
+        if (code === 'ERR_NETWORK') {
+          // server is down, just skip and continue
+          navigate('/private/nodes');
+        }
       }
 
       setLoading(false);
