@@ -1,7 +1,7 @@
 {
   "name": "@ponyui/assets-export-cli",
-  "version": "1.0.0",
-  "description": "PonyUI Assets Export CLI",
+  "version": "0.0.1",
+  "description": "CLI for exporting assets from Figma",
   "author": "Kirill Grebeniukov",
   "license": "MIT",
   "main": "./build/index.js",
@@ -10,8 +10,8 @@
   ],
   "type": "module",
   "bin": {
-    "ponyui-assets": "./build/index.js",
-    "pa": "./build/index.js"
+    "ponyui-assets": "build/index.js",
+    "pa": "build/index.js"
   },
   "scripts": {
     "start": "npx ts-node src/index.ts",
