@@ -1,7 +1,7 @@
 {
   "name": "@ponyui/assets-export-cli",
   "version": "0.0.1",
-  "description": "CLI for exporting assets from Figma",
+  "description": "CLI for exporting assets from Figma. Works together with Figma Plugin 'PonyUI Assets Export'",
   "author": "Kirill Grebeniukov",
   "license": "MIT",
   "main": "./build/index.js",

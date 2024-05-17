@@ -1,6 +1,6 @@
 # PonyUI Assets Export
 
-**PonyUI Assets Export** helps developers to export assets from Figma to local workspace!
+**PonyUI Assets Export** helps developers to export assets from Figma to local dev workspace!
 FAST and FREE!
 
 ✨ Save your time - Configure what should be exported inside Figma with our Figma plugin and export all assets with a single command.
