@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
 const { sentryWebpackPlugin } = require('@sentry/webpack-plugin');
 const path = require('path');
@@ -27,12 +26,7 @@ module.exports = (env, argv) => ({
       {
         test: /\.(css|scss)$/,
         use: [
-          {
-            loader:
-              argv.mode === 'production'
-                ? MiniCssExtractPlugin.loader
-                : 'style-loader',
-          },
+          { loader: 'style-loader' },
           {
             loader: 'css-loader',
             options: {
@@ -51,12 +45,7 @@ module.exports = (env, argv) => ({
       {
         test: /\.(css|scss)$/,
         use: [
-          {
-            loader:
-              argv.mode === 'production'
-                ? MiniCssExtractPlugin.loader
-                : 'style-loader',
-          },
+          { loader: 'style-loader' },
           { loader: 'css-loader' },
           { loader: 'sass-loader' },
           { loader: 'postcss-loader' },
