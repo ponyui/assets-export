@@ -15,9 +15,6 @@
   gap: 16px;
   width: unset;
   height: unset;
-  position: absolute !important;
-  left: calc(50% - 150px);
-  top: calc(50% - 296px);
 }
 
 .assetsAppName {
@@ -35,8 +32,8 @@
   background: #fff;
   box-sizing: border-box;
   overflow: hidden;
-  width: 256px;
-  height: 256px;
+  width: 35vh;
+  height: 35vh;
   position: relative;
 }
 
