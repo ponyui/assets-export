@@ -1,6 +1,6 @@
 {
   "name": "@ponyui/assets-export-cli",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "CLI for exporting assets from Figma. Works together with Figma Plugin 'PonyUI Assets Export'",
   "author": "Kirill Grebeniukov",
   "license": "MIT",
@@ -12,6 +12,25 @@
   "bin": {
     "ponyui-assets": "build/index.js",
     "pa": "build/index.js"
+  },
+  "keywords": [
+    "figma",
+    "figma export",
+    "figma assets export",
+    "figma batch export",
+    "figma to code",
+    "figma to jpg",
+    "figma to png",
+    "figma to svg",
+    "figma to icon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ponyui/assets-export.git"
+  },
+  "homepage": "https://github.com/ponyui/assets-export#readme",
+  "bugs": {
+    "url": "https://github.com/ponyui/assets-export/issues"
   },
   "scripts": {
     "start": "npx ts-node src/index.ts",
