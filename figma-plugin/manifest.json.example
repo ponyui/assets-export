@@ -1,12 +1,13 @@
 {
   "name": "PonyUI Assets Export",
-  "id": "1362188146863121784",
+  "id": "plugin-id-should-be-here",
   "api": "1.0.0",
   "main": "./code.js",
   "ui": "./ui.html",
   "capabilities": [],
   "enableProposedApi": false,
   "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
   "networkAccess": {
     "allowedDomains": [
       "https://ponyui.com",

@@ -34,12 +34,12 @@ function getPageNode(node: BaseNode): PageNode {
   return getPageNode(node.parent);
 }
 
-on(AppToPluginEvents.SELECT_NODE, (nodeId: string) => {
-  const node = figma.getNodeById(nodeId);
+on(AppToPluginEvents.SELECT_NODE, async (nodeId: string) => {
+  const node = await figma.getNodeByIdAsync(nodeId);
   const pageNode = getPageNode(node);
 
   if (pageNode !== figma.currentPage) {
-    figma.currentPage = pageNode;
+    figma.setCurrentPageAsync(pageNode);
   }
 
   if (node && node.type !== 'DOCUMENT' && node.type !== 'PAGE') {
