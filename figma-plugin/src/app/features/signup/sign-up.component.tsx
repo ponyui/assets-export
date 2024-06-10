@@ -49,7 +49,7 @@ const SignUp: React.FC<SignUpProps> = ({
               PonyUI Assets Export is a free tool, but to use <br />
               it, please subscribe to PonyUI newsletter.
               <br />
-              By cilcking “Sign Up” you agree with our
+              By clicking “Sign Up” you agree with our
             </div>
             <a
               className={styles.policy}

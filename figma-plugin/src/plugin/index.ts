@@ -3,4 +3,4 @@ import './auth';
 import './publish';
 import './selection';
 
-figma.showUI(__html__, { width: 312, height: 540 });
+figma.showUI(__html__, { width: 340, height: 540 });
